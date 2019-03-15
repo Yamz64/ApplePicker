@@ -52,6 +52,7 @@ public class HitBox : MonoBehaviour
         {
             health += 1;                            //increment health by 1
             StartCoroutine(LifeUpAnimation());      //start LifeUP animation
+            sounds[2].Play();                       //the LifeUP sound is played
             Destroy(other.gameObject);              //destroy the feather
         }
     }
