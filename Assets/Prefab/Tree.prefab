@@ -230,15 +230,21 @@ MonoBehaviour:
   angerTimer: 3
   nextBombTimer: 0
   nextAppleTimer: 0
+  difficultyTimer: 60
+  featherChance: 0
+  difficultyLevel: 1
   sad: 1
   sadBounds: {x: 5, y: 10}
   bombBounds: {x: 0.1, y: 0.5}
   appleBounds: {x: 0.1, y: 3}
+  featherBoundsS: {x: 0, y: 51}
+  featherBoundsH: {x: 0, y: 101}
   anim: {fileID: 0}
   dropables:
   - {fileID: 4364006952260601303, guid: d8cb8ac828632cc42a6abe88dd4d13ab, type: 3}
   - {fileID: 878194342663243667, guid: 8c7d93cf0a4c1184b972f0a0608c7f93, type: 3}
   leaves: {fileID: 8449609858673044641}
+  allBombs: []
 --- !u!82 &2254592914752788121
 AudioSource:
   m_ObjectHideFlags: 0

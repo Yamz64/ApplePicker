@@ -662,8 +662,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 646.9, y: -55}
-  m_SizeDelta: {x: 434.8, y: 214.1}
+  m_AnchoredPosition: {x: 654, y: -42}
+  m_SizeDelta: {x: 803.4, y: 214.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1359073067
 GameObject:
@@ -1147,7 +1147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   health: 3
-  combo: 0
+  combo: 15
   aTimer: 0
   hp: {fileID: 277999235}
   scoreText: {fileID: 1909374820}
@@ -1504,6 +1504,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5056419134777262945, guid: 0f63e6fbbbf6524469f4181324c212d8,
         type: 3}
+    - target: {fileID: 6120412482576449172, guid: 765280ff42ff91749b4a916f6e565a61,
+        type: 3}
+      propertyPath: featherBoundsS.y
+      value: 51
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120412482576449172, guid: 765280ff42ff91749b4a916f6e565a61,
+        type: 3}
+      propertyPath: featherBoundsH.y
+      value: 101
+      objectReference: {fileID: 0}
     - target: {fileID: 2254592914752788121, guid: 765280ff42ff91749b4a916f6e565a61,
         type: 3}
       propertyPath: Loop

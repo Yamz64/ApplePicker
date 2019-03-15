@@ -77,9 +77,12 @@ public class HitBox : MonoBehaviour
             hp.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);       //the color value of hp is set to black
             SceneManager.LoadScene("Game");
         }
-        if(combo > 0)                                       //if the combo integer is greater than 0...
+        if((combo > 0) && (combo < 20))                     //if the combo integer is greater than 0 and less than 20...
         {
             comboText.text = "Combo!\n" + combo.ToString();     //the comboText text value is set to "Combo!\n" + the combo integer as a string in much the same way as the score text value, but instead of -Score- it's Combo!
+        }else if(combo >= 20)                               //if the combo integer is greater than or equal to 20...
+        {
+            comboText.text = "Wombo Combo!\n" + combo.ToString();   //the comboText text value is set to "Wombo Combo!\n" + the combo integer in the same way as the above if statement
         }
         else                                                //if the combo integer is less than or equal to 0...
         {
