@@ -9,10 +9,12 @@ public class HitBox : MonoBehaviour
     public int score;                   //score stores the player's points
     public int health;                  //health stores the player's hitpoints
     public int combo;                   //combo stores how many apples are caught consecutively
+    public int hiscore;                 //hiscore stores the largest the player's score has ever been
     public float aTimer;                //aTimer (alpha timer) will gradually dim the comboText's alpha value over time
     public Text hp;                     //a ui text object that will display the health integer value
     public Text scoreText;              //a ui text object that will display the score integer value
     public Text comboText;              //a ui text object that will display the combo integer value
+    public Text hiscoreText;            //a ui text object that will display the hiscore integer value
     private AudioSource[] sounds = new AudioSource[2];       //all audiosources attached to hitbox
     private Animator anim;              //animator attached to player object
 
@@ -21,6 +23,7 @@ public class HitBox : MonoBehaviour
     {
         sounds = GetComponents<AudioSource>();    //sets applePick equal to the attached AudioSource component
         anim = GetComponentInParent<Animator>();  //sets anim equal to the player Animator component
+        hiscore = PlayerPrefs.GetInt("HiScore");
     }
 
     //Function responsible for LifeUP Animation
@@ -63,6 +66,7 @@ public class HitBox : MonoBehaviour
         hp.text = "HP: " + health.ToString();               //the text value of hp is set to "HP: " + the health integer as a string (for example: what would be displayed if the health was 2 would be -> HP: 2)
         scoreText.text = "-Score-\n" + score.ToString();    /*the text value of scoreText is set to "-Score-\n" + the score integer as a string (for example: what would be displayed if score was 2500 would be -> -Score-
                                                                                                                                                                                                                      2500   )*/
+        hiscoreText.text = "-Hi Score-\n" + hiscore.ToString(); //the text value of hiscoreText is set to "-Hi Score-\n" + the hiscore integer as a string in the same way as the above statement
         if(health == 3)                                     //if the health integer is equal to 3...
         {
             hp.color = new Color(0.0f, 255.0f, 0.0f, 1.0f);     //the color value of hp is set to green
@@ -76,7 +80,8 @@ public class HitBox : MonoBehaviour
         else if(health < 1)                                     //if health is less than 1...
         {
             hp.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);       //the color value of hp is set to black
-            SceneManager.LoadScene("Game");
+            PlayerPrefs.SetInt("HiScore", hiscore);             //set the HiScore equal to the integer variable hiscore
+            SceneManager.LoadScene("Game");                     //reload the game
         }
         if((combo > 0) && (combo < 20))                     //if the combo integer is greater than 0 and less than 20...
         {
@@ -97,6 +102,10 @@ public class HitBox : MonoBehaviour
         else                                                            //if the combo integer is greather than or equal to 10...
         {
             comboText.color = new Color(255.0f, 255.0f, 0.0f, aTimer);      //the color value of comboText is set equal to yellow with an alphavalue set to aTimer
+        }
+        if(score > hiscore)     //if score is greater than hiscore...
+        {
+            hiscore = score;        //set hiscore equal to score
         }
     }
 }
