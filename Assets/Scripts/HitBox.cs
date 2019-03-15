@@ -14,11 +14,21 @@ public class HitBox : MonoBehaviour
     public Text scoreText;              //a ui text object that will display the score integer value
     public Text comboText;              //a ui text object that will display the combo integer value
     private AudioSource[] sounds = new AudioSource[2];       //all audiosources attached to hitbox
+    private Animator anim;              //animator attached to player object
 
     //Initialized on Starting Frame
     private void Start()
     {
         sounds = GetComponents<AudioSource>();    //sets applePick equal to the attached AudioSource component
+        anim = GetComponentInParent<Animator>();  //sets anim equal to the player Animator component
+    }
+
+    //Function responsible for LifeUP Animation
+    private IEnumerator LifeUpAnimation()
+    {
+        anim.SetBool("LifeUP", true);               //Sets LifeUP bool to true in player animator controller
+        yield return new WaitForSeconds(.15f);      //Waits .15 seconds
+        anim.SetBool("LifeUP", false);              //Sets LifeUP bool to false in player animator controller
     }
 
     //Everything that occurs when a Collider2D by the name of other enters the collision box
@@ -38,6 +48,11 @@ public class HitBox : MonoBehaviour
             BombBehavior otherBomb = other.GetComponent<BombBehavior>();    //a variable otherBomb of dataType BombBehavior (see BombBehavior script) is set to the attached component BombBehavior of the entering collider
             sounds[1].Play();                                               //the bomb sound is played
             otherBomb.Explode();                                            //otherBomb's Explode method is initialized
+        }else if(other.tag == "Feather")//if the other collider's tag is called "Feather"... 
+        {
+            health += 1;                            //increment health by 1
+            StartCoroutine(LifeUpAnimation());      //start LifeUP animation
+            Destroy(other.gameObject);              //destroy the feather
         }
     }
 
@@ -57,7 +72,7 @@ public class HitBox : MonoBehaviour
         {
             hp.color = new Color(255.0f, 0.0f, 0.0f, 1.0f);     //the color value of hp is set to red
         }
-        else                                                //if none of the above if statements are true...
+        else if(health < 1)                                     //if health is less than 1...
         {
             hp.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);       //the color value of hp is set to black
             SceneManager.LoadScene("Game");
