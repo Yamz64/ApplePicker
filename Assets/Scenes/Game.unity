@@ -1693,6 +1693,11 @@ PrefabInstance:
       propertyPath: featherBoundsH.y
       value: 101
       objectReference: {fileID: 0}
+    - target: {fileID: 6120412482576449172, guid: 765280ff42ff91749b4a916f6e565a61,
+        type: 3}
+      propertyPath: difficultyLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2254592914752788121, guid: 765280ff42ff91749b4a916f6e565a61,
         type: 3}
       propertyPath: Loop
