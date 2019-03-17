@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
 public class HitBox : MonoBehaviour
 {
     //The behavior of the hitbox GameObject, child to the player GameObject
@@ -15,6 +15,7 @@ public class HitBox : MonoBehaviour
     public Text scoreText;              //a ui text object that will display the score integer value
     public Text comboText;              //a ui text object that will display the combo integer value
     public Text hiscoreText;            //a ui text object that will display the hiscore integer value
+    public Object deadPlayer;           //a prefab for the dead player object
     private AudioSource[] sounds = new AudioSource[2];       //all audiosources attached to hitbox
     private Animator anim;              //animator attached to player object
 
@@ -77,11 +78,13 @@ public class HitBox : MonoBehaviour
         {
             hp.color = new Color(255.0f, 0.0f, 0.0f, 1.0f);     //the color value of hp is set to red
         }
-        else if(health < 1)                                     //if health is less than 1...
+        else if(health < 1)                                 //if health is less than 1...
         {
             hp.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);       //the color value of hp is set to black
             PlayerPrefs.SetInt("HiScore", hiscore);             //set the HiScore equal to the integer variable hiscore
-            SceneManager.LoadScene("Game");                     //reload the game
+            Instantiate(deadPlayer, transform.position, transform.rotation);    //instantiate the dead player object
+            GameObject parent = transform.parent.gameObject;    //get the parent of the hitbox
+            Destroy(parent);                                    //destroy the parent
         }
         if((combo > 0) && (combo < 20))                     //if the combo integer is greater than 0 and less than 20...
         {
