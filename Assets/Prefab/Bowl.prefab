@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8082821003827765360
+--- !u!1 &8618125890960039691
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8082821003827765365}
-  - component: {fileID: 8082821003827765366}
-  - component: {fileID: 8082821003827765364}
-  - component: {fileID: 8082821003827765367}
+  - component: {fileID: 8618125890960039695}
+  - component: {fileID: 8618125890960039694}
+  - component: {fileID: 8618125890960039693}
+  - component: {fileID: 8618125890960039692}
   m_Layer: 0
-  m_Name: DeadPlayer
+  m_Name: Bowl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8082821003827765365
+--- !u!4 &8618125890960039695
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8082821003827765360}
+  m_GameObject: {fileID: 8618125890960039691}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.53, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalPosition: {x: -0.42836255, y: -2.868874, z: 0.11832319}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8082821003827765366
+--- !u!212 &8618125890960039694
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8082821003827765360}
+  m_GameObject: {fileID: 8618125890960039691}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -69,8 +69,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
-  m_Sprite: {fileID: 21300004, guid: 091cb8023dbc9e747a58070129502490, type: 3}
+  m_SortingOrder: 6
+  m_Sprite: {fileID: 21300000, guid: 3d44453865ee8e842975f3c0f901506b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -81,14 +81,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &8082821003827765364
+--- !u!50 &8618125890960039693
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8082821003827765360}
+  m_GameObject: {fileID: 8618125890960039691}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -102,21 +102,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8082821003827765367
+--- !u!114 &8618125890960039692
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8082821003827765360}
+  m_GameObject: {fileID: 8618125890960039691}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ea1be687978dec4096b77c8cdfa60e5, type: 3}
+  m_Script: {fileID: 11500000, guid: bfbba35c2d19f4e47861e0528ac97304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 1000
-  offset: 0.75
-  deathposes:
-  - {fileID: 21300004, guid: 091cb8023dbc9e747a58070129502490, type: 3}
-  - {fileID: 21300006, guid: 091cb8023dbc9e747a58070129502490, type: 3}
-  bowl: {fileID: 8618125890960039691, guid: 69abbafd32c2d374e9514db61ed14cd4, type: 3}
+  velocity: 50
+  horizontalForce: 200
+  horizontalBounds: {x: -1, y: 1}
+  verticalBounds: {x: 8, y: 10}
