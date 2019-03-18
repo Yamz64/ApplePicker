@@ -7,6 +7,7 @@ TagManager:
   - Bomb
   - Apple
   - Feather
+  - Tree
   layers:
   - Default
   - TransparentFX

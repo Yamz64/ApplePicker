@@ -936,7 +936,7 @@ GameObject:
   - component: {fileID: 1686352659}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1231,10 +1231,12 @@ MonoBehaviour:
   combo: 0
   hiscore: 0
   aTimer: 0
+  iTimer: 0
   hp: {fileID: 277999235}
   scoreText: {fileID: 1909374820}
   comboText: {fileID: 1139112548}
   hiscoreText: {fileID: 1477572885}
+  playerSprite: {fileID: 0}
   deadPlayer: {fileID: 8082821003827765360, guid: 555e9c604dcdda14c8a3950b5b1536b1,
     type: 3}
 --- !u!61 &1969218619

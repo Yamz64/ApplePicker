@@ -11,10 +11,12 @@ public class HitBox : MonoBehaviour
     public int combo;                   //combo stores how many apples are caught consecutively
     public int hiscore;                 //hiscore stores the largest the player's score has ever been
     public float aTimer;                //aTimer (alpha timer) will gradually dim the comboText's alpha value over time
+    public float iTimer;                //iTimer (i-frame timer) determines the amount of time the player is in i-frames
     public Text hp;                     //a ui text object that will display the health integer value
     public Text scoreText;              //a ui text object that will display the score integer value
     public Text comboText;              //a ui text object that will display the combo integer value
     public Text hiscoreText;            //a ui text object that will display the hiscore integer value
+    public SpriteRenderer playerSprite; //the player's sprite
     public Object deadPlayer;           //a prefab for the dead player object
     private AudioSource[] sounds = new AudioSource[2];       //all audiosources attached to hitbox
     private Animator anim;              //animator attached to player object
@@ -22,9 +24,10 @@ public class HitBox : MonoBehaviour
     //Initialized on Starting Frame
     private void Start()
     {
-        sounds = GetComponents<AudioSource>();    //sets applePick equal to the attached AudioSource component
-        anim = GetComponentInParent<Animator>();  //sets anim equal to the player Animator component
-        hiscore = PlayerPrefs.GetInt("HiScore");
+        sounds = GetComponents<AudioSource>();          //sets applePick equal to the attached AudioSource component
+        anim = GetComponentInParent<Animator>();        //sets anim equal to the player Animator component
+        hiscore = PlayerPrefs.GetInt("HiScore");        //hiscore is set to the HiScore Player Preference
+        playerSprite = GetComponentInParent<SpriteRenderer>();//playerSprite is set to the SpriteRenderer Component in the parent
     }
 
     //Function responsible for LifeUP Animation
@@ -45,13 +48,14 @@ public class HitBox : MonoBehaviour
             aTimer = 1.0f;                  //aTimer is reset to 1.0f
             sounds[0].Play();               //the apple pick sound is played
             Destroy(other.gameObject);      //the apple is destroyed
-        }else if(other.tag == "Bomb")   //if the other collider's tag is called "Bomb"...
+        }else if((other.tag == "Bomb") && (iTimer <= 0.0f))   //if the other collider's tag is called "Bomb" and iTimer is less than or equal to 0...
         {
             health -= 1;                                                    //health is decremented by 1
             combo = 0;                                                      //combo is set to 0
             BombBehavior otherBomb = other.GetComponent<BombBehavior>();    //a variable otherBomb of dataType BombBehavior (see BombBehavior script) is set to the attached component BombBehavior of the entering collider
             sounds[1].Play();                                               //the bomb sound is played
             otherBomb.Explode();                                            //otherBomb's Explode method is initialized
+            iTimer = 3.0f;                                                  //iframe Timer is set to 3 seconds
         }else if(other.tag == "Feather")//if the other collider's tag is called "Feather"... 
         {
             health += 1;                            //increment health by 1
@@ -109,6 +113,15 @@ public class HitBox : MonoBehaviour
         if(score > hiscore)     //if score is greater than hiscore...
         {
             hiscore = score;        //set hiscore equal to score
+        }
+        iTimer -= 1.0f * Time.deltaTime;    //iTimer is decremented over time
+        if(iTimer > 0.0f)       //if iTimer is greater than or equal to 0
+        {
+            playerSprite.color = new Color(255.0f, 255.0f, 255.0f, .5f);    //set alpha value of player's sprite to .5
+        }
+        else
+        {
+            playerSprite.color = new Color(255.0f, 255.0f, 255.0f, 1.0f);   //set alpha value of player's sprite to 1
         }
     }
 }
